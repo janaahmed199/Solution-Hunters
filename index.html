@@ -1,189 +1,699 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>NetWise — إدارة استهلاك الإنترنت بذكاء</title>
-  <meta name="description" content="NetWise: نظّم استهلاك باقة الإنترنت، احسب حدك اليومي، واحصل على تنبيهات ذكية وتحليل لكل تطبيق. Created by Jana & Sara." />
+
+  <meta
+    name="description"
+    content="NetWise: نظّم استهلاك باقة الإنترنت، احسب حدك اليومي، واحصل على تنبيهات ذكية وتحليل لكل تطبيق. Created by Jana & Sara."
+  />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
+
   <main class="container">
+
     <!-- الهيدر -->
     <header class="header">
+
       <div class="brand">
+
         <div class="logo">📶</div>
+
         <div>
           <h1>NetWise</h1>
           <p>إدارة استهلاك الإنترنت بذكاء</p>
         </div>
+
       </div>
-      <div class="credit">Created by Jana &amp; Sara</div>
+
+      <div class="credit">
+        Created by Jana &amp; Sara
+      </div>
+
     </header>
+
 
     <!-- شاشة إدخال البيانات -->
     <section id="setup-view" class="setup-wrap">
+
       <form id="setup-form" class="card pop">
+
         <h2>بيانات العميل والباقة</h2>
-        <p class="muted">أدخل بياناتك ليقوم NetWise بحساب حدك اليومي وتحليل استهلاك تطبيقاتك.</p>
+
+        <p class="muted">
+          أدخل بياناتك ليقوم NetWise بحساب حدك اليومي وتحليل استهلاك تطبيقاتك.
+        </p>
+
         <div class="grid-2">
+
           <label>
             <span>الاسم</span>
-            <input class="input" id="f-name" placeholder="مثال: منى أحمد" />
+
+            <input
+              class="input"
+              id="f-name"
+              placeholder="مثال: منى أحمد"
+            />
           </label>
+
+
           <label>
             <span>رقم التليفون</span>
-            <input class="input" id="f-phone" placeholder="01xxxxxxxxx" inputmode="tel" />
+
+            <input
+              class="input"
+              id="f-phone"
+              placeholder="01xxxxxxxxx"
+              inputmode="tel"
+            />
           </label>
+
+
           <label>
             <span>جيجا الباقة الشهرية</span>
-            <input class="input" id="f-monthly" type="number" min="0" step="0.1" placeholder="مثال: 40" />
+
+            <input
+              class="input"
+              id="f-monthly"
+              type="number"
+              min="0"
+              step="0.1"
+              placeholder="مثال: 40"
+            />
           </label>
+
+
           <label>
             <span>المستهلك حتى الآن (جيجا)</span>
-            <input class="input" id="f-used" type="number" min="0" step="0.1" placeholder="مثال: 12" />
+
+            <input
+              class="input"
+              id="f-used"
+              type="number"
+              min="0"
+              step="0.1"
+              placeholder="مثال: 12"
+            />
           </label>
+
+
           <label class="col-span-2">
+
             <span>عدد الأيام الباقية في الشهر</span>
-            <input class="input" id="f-days" type="number" min="1" step="1" placeholder="مثال: 18" />
+
+            <input
+              class="input"
+              id="f-days"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="مثال: 18"
+            />
+
           </label>
+
         </div>
-        <p id="setup-error" class="error-box" hidden></p>
-        <button type="submit" id="setup-submit" class="btn btn-primary btn-block">
+
+
+        <p
+          id="setup-error"
+          class="error-box"
+          hidden
+        ></p>
+
+
+        <button
+          type="submit"
+          id="setup-submit"
+          class="btn btn-primary btn-block"
+        >
           احسب حدّي اليومي وحلّل استهلاكي
         </button>
+
       </form>
-      <button id="back-to-dash" class="btn btn-ghost center-btn" hidden>رجوع للوحة التحكم</button>
+
+
+      <button
+        id="back-to-dash"
+        class="btn btn-ghost center-btn"
+        hidden
+      >
+        رجوع للوحة التحكم
+      </button>
+
     </section>
+
 
     <!-- لوحة التحكم -->
     <section id="dashboard-view" hidden>
+
       <!-- ترحيب -->
       <div class="card row-between welcome">
+
         <div>
-          <p class="muted small">مرحبًا</p>
-          <p class="welcome-name"><strong id="d-name"></strong> <span class="muted" id="d-phone"></span></p>
+
+          <p class="muted small">
+            مرحبًا
+          </p>
+
+          <p class="welcome-name">
+
+            <strong id="d-name"></strong>
+
+            <span
+              class="muted"
+              id="d-phone"
+            ></span>
+
+          </p>
+
         </div>
+
+
         <div class="row-gap">
-          <span id="d-plan-badge" class="badge"></span>
-          <button id="edit-btn" class="btn btn-ghost small">تعديل البيانات</button>
+
+          <span
+            id="d-plan-badge"
+            class="badge"
+          ></span>
+
+          <button
+            id="edit-btn"
+            class="btn btn-ghost small"
+          >
+            تعديل البيانات
+          </button>
+
         </div>
+
       </div>
+
 
       <!-- بطاقات الإحصائيات -->
       <div class="stats-grid">
-        <div class="card stat"><div class="stat-top"><span>باقة الشهر</span><span>📦</span></div><div class="stat-value"><span id="s-monthly"></span> <small>جيجا</small></div></div>
-        <div class="card stat"><div class="stat-top"><span>المتبقي</span><span>🔋</span></div><div class="stat-value"><span id="s-remaining"></span> <small>جيجا</small></div></div>
-        <div class="card stat"><div class="stat-top"><span>الأيام الباقية</span><span>🗓️</span></div><div class="stat-value"><span id="s-days"></span> <small>يوم</small></div></div>
-        <div class="card stat stat-accent"><div class="stat-top"><span>الحد اليومي</span><span>🎯</span></div><div class="stat-value"><span id="s-limit"></span> <small>جيجا/يوم</small></div></div>
+
+        <div class="card stat">
+
+          <div class="stat-top">
+
+            <span>باقة الشهر</span>
+
+            <span>📦</span>
+
+          </div>
+
+          <div class="stat-value">
+
+            <span id="s-monthly"></span>
+
+            <small>جيجا</small>
+
+          </div>
+
+        </div>
+
+
+        <div class="card stat">
+
+          <div class="stat-top">
+
+            <span>المتبقي</span>
+
+            <span>🔋</span>
+
+          </div>
+
+          <div class="stat-value">
+
+            <span id="s-remaining"></span>
+
+            <small>جيجا</small>
+
+          </div>
+
+        </div>
+
+
+        <div class="card stat">
+
+          <div class="stat-top">
+
+            <span>الأيام الباقية</span>
+
+            <span>🗓️</span>
+
+          </div>
+
+          <div class="stat-value">
+
+            <span id="s-days"></span>
+
+            <small>يوم</small>
+
+          </div>
+
+        </div>
+
+
+        <div class="card stat stat-accent">
+
+          <div class="stat-top">
+
+            <span>الحد اليومي</span>
+
+            <span>🎯</span>
+
+          </div>
+
+          <div class="stat-value">
+
+            <span id="s-limit"></span>
+
+            <small>جيجا/يوم</small>
+
+          </div>
+
+        </div>
+
       </div>
 
+
       <div class="two-col">
+
+
         <!-- متابعة الاستهلاك والتحكم -->
         <div class="card">
+
           <div class="row-between">
+
             <h3>متابعة استهلاك اليوم</h3>
-            <span id="status-badge" class="badge"></span>
+
+            <span
+              id="status-badge"
+              class="badge"
+            ></span>
+
           </div>
+
 
           <div class="bar-block">
-            <div class="bar-labels"><span id="today-label"></span><span id="today-pct" class="muted"></span></div>
-            <div class="track"><div id="today-bar" class="bar"></div></div>
-          </div>
 
-          <div class="bar-block">
-            <div class="bar-labels"><span id="month-label"></span><span id="month-pct" class="muted"></span></div>
-            <div class="track"><div id="month-bar" class="bar bar-soft"></div></div>
-          </div>
+            <div class="bar-labels">
 
-          <div id="block-panel" class="block-panel" hidden>
-            <p class="block-title">🔒 الإنترنت محظور مؤقتًا (<span id="block-countdown"></span>)</p>
-            <p>في حالة الطوارئ يمكنك إلغاء الحظر فورًا من الإعدادات بالأسفل.</p>
-            <button id="emergency-unblock" class="btn btn-danger small">إلغاء الحظر (طوارئ)</button>
-          </div>
+              <span id="today-label"></span>
 
-          <div class="control-block">
-            <p class="section-title">محاكاة الاستهلاك (Data Control)</p>
-            <div class="control-row" id="quick-usage">
-              <button class="btn btn-outline chip" data-gb="0.1">+0.1 جيجا</button>
-              <button class="btn btn-outline chip" data-gb="0.25">+0.25 جيجا</button>
-              <button class="btn btn-outline chip" data-gb="0.5">+0.5 جيجا</button>
-              <button class="btn btn-outline chip" data-gb="1">+1 جيجا</button>
-              <div class="custom-usage">
-                <input class="input input-sm" id="custom-gb" type="number" min="0.01" step="0.1" value="0.5" />
-                <button id="custom-usage-btn" class="btn btn-primary small">استهلك</button>
-              </div>
-              <button id="reset-day" class="btn btn-soft small">🔄 يوم جديد</button>
+              <span
+                id="today-pct"
+                class="muted"
+              ></span>
+
             </div>
+
+
+            <div class="track">
+
+              <div
+                id="today-bar"
+                class="bar"
+              ></div>
+
+            </div>
+
           </div>
+
+
+          <div class="bar-block">
+
+            <div class="bar-labels">
+
+              <span id="month-label"></span>
+
+              <span
+                id="month-pct"
+                class="muted"
+              ></span>
+
+            </div>
+
+
+            <div class="track">
+
+              <div
+                id="month-bar"
+                class="bar bar-soft"
+              ></div>
+
+            </div>
+
+          </div>
+
+
+          <!-- الحظر -->
+          <div
+            id="block-panel"
+            class="block-panel"
+            hidden
+          >
+
+            <p class="block-title">
+
+              🔒 الإنترنت محظور مؤقتًا
+              (<span id="block-countdown"></span>)
+
+            </p>
+
+            <p>
+              في حالة الطوارئ يمكنك إلغاء الحظر فورًا من الإعدادات بالأسفل.
+            </p>
+
+            <button
+              id="emergency-unblock"
+              class="btn btn-danger small"
+            >
+              إلغاء الحظر (طوارئ)
+            </button>
+
+          </div>
+
+
+          <!-- محاكاة الاستهلاك -->
+          <div class="control-block">
+
+            <p class="section-title">
+              محاكاة الاستهلاك (Data Control)
+            </p>
+
+
+            <div
+              class="control-row"
+              id="quick-usage"
+            >
+
+              <button
+                class="btn btn-outline chip"
+                data-gb="0.1"
+              >
+                +0.1 جيجا
+              </button>
+
+
+              <button
+                class="btn btn-outline chip"
+                data-gb="0.25"
+              >
+                +0.25 جيجا
+              </button>
+
+
+              <button
+                class="btn btn-outline chip"
+                data-gb="0.5"
+              >
+                +0.5 جيجا
+              </button>
+
+
+              <button
+                class="btn btn-outline chip"
+                data-gb="1"
+              >
+                +1 جيجا
+              </button>
+
+
+              <div class="custom-usage">
+
+                <input
+                  class="input input-sm"
+                  id="custom-gb"
+                  type="number"
+                  min="0.01"
+                  step="0.1"
+                  value="0.5"
+                />
+
+
+                <button
+                  id="custom-usage-btn"
+                  class="btn btn-primary small"
+                >
+                  استهلك
+                </button>
+
+              </div>
+
+
+              <button
+                id="reset-day"
+                class="btn btn-soft small"
+              >
+                🔄 يوم جديد
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
+
 
         <!-- التنبيهات الذكية -->
         <div class="card alerts-card">
-          <h3>التنبيهات الذكية</h3>
-          <div id="alerts-list" class="alerts-list scroll"></div>
+
+          <h3>
+            التنبيهات الذكية
+          </h3>
+
+          <div
+            id="alerts-list"
+            class="alerts-list scroll"
+          ></div>
+
         </div>
+
       </div>
+
 
       <!-- تحليل التطبيقات -->
       <div class="card">
+
         <div class="row-between wrap">
-          <h3>تحليل استهلاك التطبيقات</h3>
-          <span id="source-badge" class="badge"></span>
+
+          <h3>
+            تحليل استهلاك التطبيقات
+          </h3>
+
+          <span
+            id="source-badge"
+            class="badge"
+          ></span>
+
         </div>
-        <p id="analysis-summary" class="summary-box"></p>
-        <div id="apps-grid" class="apps-grid"></div>
+
+
+        <p
+          id="analysis-summary"
+          class="summary-box"
+        ></p>
+
+
+        <div
+          id="apps-grid"
+          class="apps-grid"
+        ></div>
+
       </div>
+
 
       <!-- الإعدادات -->
       <div class="card">
-        <h3>الإعدادات والتحكم</h3>
+
+        <h3>
+          الإعدادات والتحكم
+        </h3>
+
+
         <div class="setting-row">
+
           <div>
-            <p class="strong">حظر الإنترنت عند تجاوز الحد اليومي</p>
-            <p class="muted small">بعد تنبيهين يتم حظر الإنترنت ساعة لحماية باقتك. يمكنك تعطيلها في الطوارئ.</p>
+
+            <p class="strong">
+              حظر الإنترنت عند تجاوز الحد اليومي
+            </p>
+
+            <p class="muted small">
+              بعد تنبيهين يتم حظر الإنترنت ساعة لحماية باقتك.
+              يمكنك تعطيلها في الطوارئ.
+            </p>
+
           </div>
-          <button id="blocking-toggle" class="toggle" aria-pressed="true"><span class="knob"></span></button>
+
+
+          <button
+            id="blocking-toggle"
+            class="toggle"
+            aria-pressed="true"
+          >
+
+            <span class="knob"></span>
+
+          </button>
+
         </div>
-        <p id="emergency-note" class="warn-box" hidden>⚠️ وضع الطوارئ مفعّل: الحظر معطّل والإنترنت سيبقى مفتوحًا حتى بعد تجاوز الحد.</p>
+
+
+        <p
+          id="emergency-note"
+          class="warn-box"
+          hidden
+        >
+          ⚠️ وضع الطوارئ مفعّل: الحظر معطّل والإنترنت سيبقى مفتوحًا حتى بعد تجاوز الحد.
+        </p>
+
       </div>
+
 
       <!-- الخطط -->
       <div class="plans-grid">
+
+
+        <!-- الخطة المجانية -->
         <div class="card">
-          <h3>الخطة المجانية</h3>
-          <p class="price">مجانًا</p>
+
+          <h3>
+            الخطة المجانية
+          </h3>
+
+          <p class="price">
+            مجانًا
+          </p>
+
+
           <ul class="plan-list">
-            <li>✅ حساب الحد اليومي التلقائي</li>
-            <li>✅ تنبيهات ذكية + حظر ساعة عند التجاوز</li>
-            <li>✅ إلغاء الحظر في الطوارئ</li>
-            <li>✅ تحليل تقديري لاستهلاك التطبيقات</li>
+
+            <li>
+              ✅ حساب الحد اليومي التلقائي
+            </li>
+
+            <li>
+              ✅ تنبيهات ذكية + حظر ساعة عند التجاوز
+            </li>
+
+            <li>
+              ✅ إلغاء الحظر في الطوارئ
+            </li>
+
+            <li>
+              ✅ تحليل تقديري لاستهلاك التطبيقات
+            </li>
+
           </ul>
-          <button id="downgrade-btn" class="btn btn-outline btn-block" hidden>الرجوع للخطة المجانية</button>
+
+
+          <button
+            id="downgrade-btn"
+            class="btn btn-outline btn-block"
+            hidden
+          >
+            الرجوع للخطة المجانية
+          </button>
+
         </div>
 
+
+        <!-- الخطة المدفوعة -->
         <div class="card plan-paid">
-          <span class="ribbon">أول شهرين مجانًا 🎁</span>
-          <h3>الخطة المدفوعة ✨</h3>
-          <p class="price">49 ج.م<small>/شهر</small></p>
+
+          <span class="ribbon">
+            أول شهرين مجانًا 🎁
+          </span>
+
+
+          <h3>
+            الخطة المدفوعة ✨
+          </h3>
+
+
+          <p class="price">
+            49 ج.م
+            <small>/شهر</small>
+          </p>
+
+
           <ul class="plan-list">
-            <li>⭐ كل مزايا الخطة المجانية</li>
-            <li>🤖 تحليل دقيق لكل تطبيق عبر Gemini AI</li>
-            <li>📊 توقّعات وتوصيات ترشيد متقدمة</li>
-            <li>🔔 تنبيهات مخصّصة حسب سلوكك</li>
+
+            <li>
+              ⭐ كل مزايا الخطة المجانية
+            </li>
+
+            <li>
+              🤖 تحليل دقيق لكل تطبيق عبر Gemini AI
+            </li>
+
+            <li>
+              📊 توقّعات وتوصيات ترشيد متقدمة
+            </li>
+
+            <li>
+              🔔 تنبيهات مخصّصة حسب سلوكك
+            </li>
+
           </ul>
-          <button id="upgrade-btn" class="btn btn-primary btn-block">ابدأ شهرين مجانًا</button>
-          <div id="subscribed-note" class="subscribed" hidden>أنت مشترك حاليًا ✅</div>
+
+
+          <button
+            id="upgrade-btn"
+            class="btn btn-primary btn-block"
+          >
+            ابدأ شهرين مجانًا
+          </button>
+
+
+          <div
+            id="subscribed-note"
+            class="subscribed"
+            hidden
+          >
+            أنت مشترك حاليًا ✅
+          </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <footer class="footer">NetWise © 2026 · Created by Jana &amp; Sara</footer>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+      NetWise ©️ 2026 · Created by Jana &amp; Sara
+
+    </footer>
+
   </main>
 
-  <script src="/script.js"></script>
+
+  <!-- JavaScript -->
+  <script src="./script.js"></script>
+
 </body>
+
 </html>
